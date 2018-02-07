@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import * as routes from '../../common/routes';
+
 class Navbar extends Component {
     render() {
         return (
             <div className="Navbar">
-                <nav className="navbar navbar-light">
+                <nav className="navbar navbar-default">
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -20,12 +22,11 @@ class Navbar extends Component {
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav">
                                 <li className="active"><a href='/'>Home</a></li>
-                                <li><a href='/video'>Projects</a></li>
-                                <li><a>Contact</a></li>
-                                <li><a>About</a></li>
+                                <li><a href={routes.VIDEO}>Projects</a></li>
+                                <li><a href={routes.CONTACT}>Contact</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a href={routes.LOGIN}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                     </div>
