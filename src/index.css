@@ -50,10 +50,24 @@ body {
 
 .text-padding {
   text-align: justify;
-  padding: 0px 40px;
+  padding: 10px 40px;
 }
 
 .nav-header-text {
   font-family: serif;
   color: #00aef3
+}
+
+.text-align-center{
+  text-align: center
+}
+
+.login-box{
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .login-box {
+    width: 40%;
+  }
 }

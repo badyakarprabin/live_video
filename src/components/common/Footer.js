@@ -6,7 +6,7 @@ class Footer extends Component {
             <div className="col-xs-12 footer">
                 <footer className="container-fluid text-center">
                     <hr />
-                    <p style={{ color: '#333', 'font-size': '10px' }}>  © E-Leaning, Inc. 2018</p>
+                    <p style={{ color: '#00aef3' }}>  © E-Leaning, Inc. 2018</p>
                 </footer>
 
             </div>

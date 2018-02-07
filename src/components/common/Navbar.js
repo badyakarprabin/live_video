@@ -1,9 +1,38 @@
+import * as classNames from 'classnames';
 import React, { Component } from 'react';
 
 import * as routes from '../../common/routes';
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isActiveTab: [true, false, false]
+        };
+        console.log('erer')
+    }
+
+    onNavClick(param) {
+        const activeData = this.state.isActiveTab.map((item, index) => {
+            return param === index
+        })
+        this.setState({ isActiveTab: activeData });
+    }
+
     render() {
+        const isHomeActive = classNames({
+            'active': this.state.isActiveTab[0],
+        })
+        const isProjectActive = classNames({
+            'active': this.state.isActiveTab[1],
+        })
+        const isContactActive = classNames({
+            'active': this.state.isActiveTab[2],
+        })
+        const isLoginActive = classNames({
+            'active': this.state.isActiveTab[3],
+        })
+
         return (
             <div className="Navbar">
                 <nav className="navbar navbar-default">
@@ -21,12 +50,12 @@ class Navbar extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav">
-                                <li className="active"><a href='/'>Home</a></li>
-                                <li><a href={routes.VIDEO}>Projects</a></li>
-                                <li><a href={routes.CONTACT}>Contact</a></li>
+                                <li className={isHomeActive} onClick={() => this.onNavClick(0)}><a href='/'>Home</a></li>
+                                <li className={isProjectActive} onClick={() => this.onNavClick(1)}><a href={routes.VIDEO}>Projects</a></li>
+                                <li className={isContactActive} onClick={() => this.onNavClick(2)}><a href={routes.CONTACT}>Contact</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href={routes.LOGIN}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a onClick={() => this.onNavClick(3)} href={routes.LOGIN}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                     </div>
