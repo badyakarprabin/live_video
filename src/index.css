@@ -84,9 +84,40 @@ h2 {
   height: 200px;
 }
 
+.message-box{
+  bottom: 0;
+  height: 300px;
+  position: fixed;
+  margin: 0px -15px;  
+  text-align: center;
+  background: white;
+  border: #435555 solid 1px;
+}
+/* video */
+.publisher-video{
+  margin: 10px;
+  height: 300px;
+  text-align: center;  
+  background: black;
+}
+
+.subscriber-video{
+  width: 60%;  
+  margin: 10px;
+  height: 100px;
+  text-align: center;  
+  background: black;
+}
+
+
 @media (min-width: 768px) {
   body {
     font-size: 16px;
+  }
+  .message-box{
+    right: 0px;   
+    margin: 10px;     
+    height: 500px;
   }
   .login-box {
     width: 40%;
@@ -100,4 +131,14 @@ h2 {
   .secondary-container{
     height: 300px;
   }
+  /* video */
+  .publisher-video{
+    height: 500px;
+  }
+
+  .subscriber-video{
+    width: 100%;    
+    height: 100px;
+  }
+  
 }
