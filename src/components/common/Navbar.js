@@ -29,9 +29,9 @@ class Navbar extends Component {
         const isContactActive = classNames({
             'active': this.state.isActiveTab[2],
         })
-        const isLoginActive = classNames({
-            'active': this.state.isActiveTab[3],
-        })
+        // const isLoginActive = classNames({
+        //     'active': this.state.isActiveTab[3],
+        // })
 
         return (
             <div className="Navbar">
