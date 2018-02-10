@@ -11,7 +11,7 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 
 const App = () => (
-    <div>
+    <div className='container'>
         <Navbar />
         <BrowserRouter history>
             <Switch>

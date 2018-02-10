@@ -3,17 +3,14 @@ import React, { Component } from 'react';
 class Login extends Component {
     render() {
         return (
-            <form>
+            <form className='loading-animation'>
                 <div className="container login-box component-screen">
                     <div className='col-xs-12'>
                         <label><b>Username</b></label>
                         <input type="text" placeholder="Enter Username" name="uname" required />
-
                         <label><b>Password</b></label>
                         <input type="password" placeholder="Enter Password" name="psw" required />
 
-                    </div>
-                    <div className='container' style={{ width: '60%' }}>
                         <button className='login-button' type="submit">Login</button>
                     </div>
                     {/* <div style={{ padding: '20px', 'background-color': '#f1f1f1' }}>

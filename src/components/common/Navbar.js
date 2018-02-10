@@ -1,15 +1,42 @@
 import * as classNames from 'classnames';
 import React, { Component } from 'react';
 
+import icon from '../../assets/icon.png';
 import * as routes from '../../common/routes';
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActiveTab: [true, false, false]
+            isActiveTab: 0
         };
-        console.log('erer')
+    }
+
+    componentWillMount() {
+        const location = window.location.pathname;
+        switch (location) {
+            case '/video':
+                this.setState({
+                    isActiveTab: 1
+                });
+                break;
+            case '/contact':
+                this.setState({
+                    isActiveTab: 2
+                });
+                break;
+            case '/login':
+                this.setState({
+                    isActiveTab: 3
+                });
+                break;
+            default:
+                this.setState({
+                    isActiveTab: 0
+                });
+                break;
+
+        }
     }
 
     onNavClick(param) {
@@ -21,17 +48,17 @@ class Navbar extends Component {
 
     render() {
         const isHomeActive = classNames({
-            'active': this.state.isActiveTab[0],
+            'active': this.state.isActiveTab === 0
         })
         const isProjectActive = classNames({
-            'active': this.state.isActiveTab[1],
+            'active': this.state.isActiveTab === 1
         })
         const isContactActive = classNames({
-            'active': this.state.isActiveTab[2],
+            'active': this.state.isActiveTab === 2
         })
-        // const isLoginActive = classNames({
-        //     'active': this.state.isActiveTab[3],
-        // })
+        const isLoginActive = classNames({
+            'active': this.state.isActiveTab === 3,
+        })
 
         return (
             <div className="Navbar">
@@ -44,7 +71,7 @@ class Navbar extends Component {
                                 <span className="icon-bar"></span>
                             </button>
                             <a className="navbar-brand logo-icon">
-                                <img src='http://glptn.org/wp-content/uploads/2015/12/Icon-elearning.png' alt='Logo' width='30px' height='30px' />
+                                <img src={icon} alt='Logo' width='30px' height='30px' />
                                 {/* <span className='logo-text'><b><i> E-Learning</i></b></span> */}
                             </a>
                         </div>
@@ -55,7 +82,7 @@ class Navbar extends Component {
                                 <li className={isContactActive} onClick={() => this.onNavClick(2)}><a href={routes.CONTACT}>Contact</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a onClick={() => this.onNavClick(3)} href={routes.LOGIN}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li className={isLoginActive}><a onClick={() => this.onNavClick(3)} href={routes.LOGIN}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                             </ul>
                         </div>
                     </div>

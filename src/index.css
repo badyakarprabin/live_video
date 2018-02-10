@@ -28,7 +28,7 @@ h2 {
 }
 
 .nav .active {
-  background: #435555;
+  background: #00aef3 !important;
   border-radius: 20px 0px 15px 15px;
 }
 
@@ -72,6 +72,9 @@ h2 {
   text-align: left
 }
 
+.block-spacing{
+  margin: 25px 0px;
+}
 .login-box{
   width: 100%;
 }
@@ -129,7 +132,7 @@ h2 {
     padding: 0px 40px;
   } 
   .secondary-container{
-    height: 300px;
+    height: 400px;
   }
   /* video */
   .publisher-video{

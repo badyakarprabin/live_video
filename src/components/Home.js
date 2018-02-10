@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+import home from '../assets/home.jpg';
+import notes from '../assets/notes.png';
+import videos from '../assets/videos.png';
+import assessment from '../assets/assessments.png';
+
+
 class Home extends Component {
   render() {
     return (
@@ -11,11 +17,11 @@ class Home extends Component {
 
           <div className="carousel-inner" role="listbox">
             <div className="item active" style={{ height: '500px', witdth: '100%' }}>
-              <img src='http://letzgro.net/wp-content/uploads/2016/08/Image3.jpg' alt='test' />
+              <img src={home} alt='test' />
             </div>
 
             <div className="item" style={{ height: '500px', witdth: '100%' }}>
-              <img src='http://letzgro.net/wp-content/uploads/2016/08/Image3.jpg' alt='test' />
+              <img src={home} alt='test' />
             </div>
 
           </div>
@@ -34,21 +40,21 @@ class Home extends Component {
           <h3>Our Goals : </h3><br />
           <div className="row">
             <div className='col-xs-4'>
-              <div>
-                <img src='https://3.bp.blogspot.com/-KBGfNSDupvY/Vf2h36nn3MI/AAAAAAAADlo/r1Wfhxbhi4I/s1600/writing-icon.png' alt='notes' width='30%' />
-                <div> Develop writing skills for taking different online classes. </div>
+              <div className='loading-animation'>
+                <img className='loading-animation' src={notes} alt='notes' width='30%' />
+                <div> Develop writing skills for taking different online classes. Develop writing skills for taking different online classes. Develop writing skills for taking different online classes </div>
               </div>
             </div>
             <div className='col-xs-4'>
-              <div>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2sTF81FtaJoB_MiJexWUsWXd2T3vtYSw0bfepYxal3RLS9jDK' alt='videos' width='30%' />
-                <div> Watch unlimited live video stream classes with our experts.  </div>
+              <div className='loading-animation'>
+                <img src={videos} alt='videos' width='30%' />
+                <div> Watch unlimited live video stream classes with our experts. Watch unlimited live video stream classes with our experts.Watch unlimited live video stream classes with our experts.  </div>
               </div>
             </div>
             <div className='col-xs-4'>
-              <div>
-                <img src='https://assets.materialup.com/uploads/d0b393f6-3975-48dd-b7ca-bf0289187c6e/preview' width='30%' alt='education'/>
-                <div> Complete listed assessment given by the mentors. </div>
+              <div className='loading-animation'>
+                <img className='loading-animation' src={assessment} width='30%' alt='education' />
+                <div> Complete listed assessment given by the mentors. Complete listed assessment given by the mentors. Complete listed assessment given by the mentors. </div>
               </div>
             </div>
           </div>
