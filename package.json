@@ -1,9 +1,11 @@
 {
   "name": "live-stream",
+  "homepage": "http://badyakarprabin.github.io/live_video",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "gh-pages": "^1.1.0",
     "history": "^4.7.2",
     "opentok-accelerator-core": "^2.0.14",
     "opentok-react": "^0.7.0",
@@ -16,6 +18,8 @@
     "react-scroll": "^1.7.6"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
