@@ -98,3 +98,90 @@ span.psw {
     opacity: 1;
   }
 }
+
+
+
+
+
+
+
+.App-control-container {
+  position: relative;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.app-container{
+  top: -84px;    
+}
+
+.App-control-container.hidden {
+  display: none;
+}
+
+.App-control-container .ots-video-control {
+  width: 50px;
+  height: 50px;
+  margin: 20px 0 !important;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-position: center;
+  background-color: rgba(27, 134, 144, 0.4);
+  background-color: lightgrey;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.App-control-container .ots-video-control.end-call {
+  background-image: url(https://assets.tokbox.com/solutions/images/icon-hang-up.png);
+  background-color: red;
+}
+
+.App-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-control-container .ots-video-control.video.muted {
+  background-image: url(https://assets.tokbox.com/solutions/images/icon-no-video.png);
+}
+
+.publisherContainer {
+  width: 500px;
+  height: 400px;
+}
+
+.text-info{
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}
+.subscriberContainer{
+  width: 100px;
+  height: 100px;
+}
+
+.ots-text-chat-container {
+  width: 300px;
+  margin-top: -20px;
+}
+
+.overlay {
+  position: absolute;
+  height: 400px;
+  background: black;
+  text-align: center;
+  color: white;
+}
+
+.start-call{
+  top: -70px;
+  text-align: center
+}

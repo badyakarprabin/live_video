@@ -6,6 +6,7 @@ import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Video from './components/Video';
+import Opentok from './components/Opentok';
 import Contact from './components/Contact';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
@@ -17,7 +18,8 @@ const App = () => (
             <Switch>
                 <Route exact path={routes.HOME} component={Home} />
                 <Route exact path={routes.LOGIN} component={Login} />
-                <Route exact path={routes.VIDEO} component={Video} />
+                <Route exact path={routes.VIDEOS} component={Video} />
+                <Route exact path={routes.VIDEO} component={Opentok} />
                 <Route exact path={routes.CONTACT} component={Contact} />
             </Switch>
         </BrowserRouter>
