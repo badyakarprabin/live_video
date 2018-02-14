@@ -4,9 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@opentok/client": "^2.13.0",
     "classnames": "^2.2.5",
     "gh-pages": "^1.1.0",
     "history": "^4.7.2",
+    "jquery": "^3.3.1",
     "opentok-accelerator-core": "^2.0.14",
     "opentok-react": "^0.7.0",
     "opentok-solutions-css": "^0.0.43",

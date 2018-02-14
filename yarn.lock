@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@opentok/client@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@opentok/client/-/client-2.13.0.tgz#fa55d5f67bbb5bd6ff9f840208087655a77bdee1"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -3754,7 +3758,7 @@ jest@20.0.4:
   dependencies:
     jest-cli "^20.0.4"
 
-jquery@^3.1.0:
+jquery@^3.1.0, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 

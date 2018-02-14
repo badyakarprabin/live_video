@@ -13,7 +13,6 @@ const Contact = () => {
                     <p>
                         Live Vide streaming is made for all customers who are willing to learn but has less time to go to the school/college for studies. If you want to be part of us please contact us in the following address.
                     </p>
-                    <br />
                     <div className='col-xs-6 no-padding'>
                         <h4 className='nav-header-text'>Location</h4>
                         <div>John Smit</div>

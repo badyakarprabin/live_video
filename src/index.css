@@ -8,6 +8,11 @@ body {
 h2 {
   margin: 0px;
 }
+h3 {
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
+
 .navbar-brand>img {
   display: inline;
 }
