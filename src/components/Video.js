@@ -2,7 +2,6 @@ import $ from "jquery";
 import OT from '@opentok/client';
 import React, { Component } from 'react';
 import avatar from '../assets/avatar.png'
-
 import 'opentok-solutions-css';
 import AccCore from 'opentok-accelerator-core';
 
@@ -15,60 +14,79 @@ function handleError(error) {
         alert(error.message);
     }
 }
+let session = OT.initSession(API_KEY, SESSION_ID);
 
-$('#subscriber').on('click', function () {
-    var publiserTag = $('#publisher').children().html();
-    var subscriberTag = $('.OT_subscriber').html();
-    $('#publisher').children().html(subscriberTag);
-    $('#subscriber').prepend(subscriberTag);
-})
+let messageContainer = [];
+
+const oneToOneMessage = () => {
+
+    session.signal(
+        {
+            type: "textMessage",
+            data: $('#message').val()
+        },
+        function (error) {
+            if (error) {
+                console.log("signal error ("
+                    + error.name
+                    + "): " + error.message);
+            } else {
+                console.log("signal sent.");
+            }
+        }
+    );
+}
+const initializeSession = () => {
 
 
-
-class Video extends Component {
-
-    initializeSession() {
-
-        $('#subscriber .OT_root').on('click', function (e) {
-            var publiserTag = $('#publisher').children()[0];
-            var subscriberTag = $(e.currentTarget)[0];
-            $(e.currentTarget).replaceWith(publiserTag);
-            $('#publisher').html(subscriberTag);
-        })
-
-        var session = OT.initSession(API_KEY, SESSION_ID);
-
-        // Subscribe to a newly created stream
-        session.on('streamCreated', function (event) {
-            session.subscribe(event.stream, 'subscriber', {
-                insertMode: 'append',
-                width: '100%',
-                height: '100%'
-            }, handleError);
-        });
-
-        // Create a publisher
-        var publisher = OT.initPublisher('publisher', {
+    // Subscribe to a newly created stream
+    session.on('streamCreated', function (event) {
+        session.subscribe(event.stream, 'subscriber', {
             insertMode: 'append',
             width: '100%',
             height: '100%'
-        }, handleError());
+        }, handleError);
+    });
 
-        session.connect(TOKEN, function (error) {
-            // If the connection is successful, initialize a publisher and publish to the session
-            if (error) {
-                this.handleError(error);
-            } else {
-                session.publish(publisher, handleError);
+    // Create a publisher
+    var publisher = OT.initPublisher('publisher', {
+        insertMode: 'append',
+        width: '100%',
+        height: '100%'
+    }, handleError());
 
-            }
-        });
+    session.connect(TOKEN, function (error) {
+        // If the connection is successful, initialize a publisher and publish to the session
+        if (error) {
+            this.handleError(error);
+        } else {
+            session.publish(publisher, handleError);
+
+        }
+    });
+}
+
+class Video extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            messageContainer: []
+        };
     }
-    componentWillMount() {
 
-    }
     componentDidMount() {
-        this.initializeSession();
+        initializeSession();
+
+        let message = [];
+
+        session.on("signal:textMessage", (event) => {
+            message.push("User :" + event.data)
+            this.setState({
+                messageContainer: message
+            })
+            // Process the event.data property, if there is any data.
+        });
+
         $('#subscriber .OT_root').on('click', function (e) {
             var publiserTag = $('#publisher').children()[0];
             var subscriberTag = $(e.currentTarget)[0];
@@ -78,13 +96,19 @@ class Video extends Component {
     }
 
     render() {
+
         return (
             <div className="container component-screen">
+                <div>
+                    {this.state.messageContainer.map((item) =>
+                        <div>{item}</div>
+                    )}
+                </div>
+                < input type='text' id='message' />
+                <button onClick={() => oneToOneMessage()}> Clicke me to sent message</button>
                 <div className="col-xs-12 col-lg-7">
-
                     <div className='publisher-video' >
                         <div id='publisher' style={{ width: '100%', height: '100%' }} />
-                        {/* <div id="cameraPublisherContainer" style={{ width: '100%', height: '100%' }} /> */}
                     </div>
                 </div>
                 <div className="col-xs-12 col-lg-5">
@@ -108,8 +132,6 @@ class Video extends Component {
                         </div>
                     </div> */}
                 </div>
-                {/* <div className="col-xs-12 col-lg-3 message-box">
-                </div> */}
             </div>
         );
     }

@@ -13,6 +13,7 @@
     "opentok-react": "^0.7.0",
     "opentok-solutions-css": "^0.0.43",
     "opentok-text-chat": "^1.0.30",
+    "opentok-whiteboard": "^1.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
