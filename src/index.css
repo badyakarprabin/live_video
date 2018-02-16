@@ -94,13 +94,23 @@ h3 {
 
 .message-box{
   bottom: 0;
-  height: 300px;
-  position: fixed;
+  position:fixed;
+  height: 350px;
   margin: 0px -15px;  
   text-align: center;
   background: white;
   border: #435555 solid 1px;
 }
+
+.message-card-body{
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.message-box-view{
+
+}
+
 /* video */
 .publisher-video{
   margin: 10px;
@@ -125,7 +135,7 @@ h3 {
   .message-box{
     right: 0px;   
     margin: 10px;     
-    height: 500px;
+    height: 350px;
   }
   .login-box {
     width: 40%;

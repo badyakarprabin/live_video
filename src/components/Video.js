@@ -18,8 +18,28 @@ let session = OT.initSession(API_KEY, SESSION_ID);
 
 let messageContainer = [];
 
-const oneToOneMessage = () => {
+const oneToOneMessage = (e) => {
+    session.signal(
+        {
+            connection: {
+                connectionId: 'id'
+            },
+            type: "textMessage",
+            data: $('#message').val()
+        },
+        function (error) {
+            if (error) {
+                console.log("signal error ("
+                    + error.name
+                    + "): " + error.message);
+            } else {
+                console.log("signal sent.");
+            }
+        }
+    );
+}
 
+const publicMessage = () => {
     session.signal(
         {
             type: "textMessage",
@@ -42,6 +62,7 @@ const initializeSession = () => {
     // Subscribe to a newly created stream
     session.on('streamCreated', function (event) {
         session.subscribe(event.stream, 'subscriber', {
+            connection: event.stream.connection,
             insertMode: 'append',
             width: '100%',
             height: '100%'
@@ -99,13 +120,6 @@ class Video extends Component {
 
         return (
             <div className="container component-screen">
-                <div>
-                    {this.state.messageContainer.map((item) =>
-                        <div>{item}</div>
-                    )}
-                </div>
-                < input type='text' id='message' />
-                <button onClick={() => oneToOneMessage()}> Clicke me to sent message</button>
                 <div className="col-xs-12 col-lg-7">
                     <div className='publisher-video' >
                         <div id='publisher' style={{ width: '100%', height: '100%' }} />
@@ -115,24 +129,33 @@ class Video extends Component {
                     <div className='row'>
                         <div className='col-xs-5'>
                             <div className='subscriber-video'>
-                                <div id='subscriber' style={{ width: '100%', height: '100%' }} />
-                                <div id="cameraSubscriberContainer" />
+                                <div className='col-xs-10' id='subscriber' style={{ width: '70%', height: '100%' }} />
+                                <div className='col-xs-2 glyphicon glyphicon-envelope'
+                                    onClick={(e) => oneToOneMessage(e)}
+                                    style={{ margin: '40px 0px' }} />
                             </div>
                         </div>
                     </div>
-                    {/* <div className='row'>
-                        <div className='col-xs-5'>
-                            <div className='subscriber-video'>
-                                <img src={avatar} width='100px' height='100px' alt='Subscriber' />
-                            </div>
-                        </div>
-                        <div className='col-xs-7' style={{ margin: '10px 0px' }}>
-                            <div> Ram Shreatha </div>
-                            <div> Status : Online </div>
-                        </div>
-                    </div> */}
                 </div>
-            </div>
+                <div className="col-xs-12 col-lg-3 message-box">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Public : Chat Room   [] X
+  </div>
+                        <div class="message-card-body">
+                            <p class="card-text">Get in touch with your mentor in the public chat room</p>
+                            {this.state.messageContainer.map((item, index) =>
+                                <div key={index}>{item}</div>
+                            )}
+                        </div>
+                        <div class="card-footer text-muted">
+                            <input type="text" class="form-control" id='message' placeholder="Recipient's username" />
+                            <button class="btn btn-outline-secondary glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
+                        </div>
+                    </div>
+
+                </div>
+            </div >
         );
     }
 }
