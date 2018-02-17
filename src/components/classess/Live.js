@@ -21,7 +21,7 @@ const Live = () => {
                     <div className='text-center'>
                         <div>Biology</div>
                         <div>
-                            <span><a href='/profile'>Lomos :</a></span>
+                            <span><a href={routes.PROFILE}>Lomos :</a></span>
                             <span> 51 <img src={views} width={20} height={20} alt='views' /></span><br />
                         </div>
                         <div><span className='duration'> 1 hours ago </span></div>
@@ -39,7 +39,7 @@ const Live = () => {
                     <div className='text-center'>
                         <div>Chemistry</div>
                         <div>
-                            <span><a href='/profile'>Tom Hendson :</a></span>
+                            <span><a href={routes.PROFILE}>Tom Hendson :</a></span>
                             <span> 31 <img src={views} width={20} height={20} alt='views' /></span><br />
                             <div><span className='duration'> 50 mins ago </span></div>
                         </div>
