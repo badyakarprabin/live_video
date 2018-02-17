@@ -15,7 +15,7 @@ import LiveClasses from './components/classess/LiveClasses';
 const App = () => (
     <div>
         <Navbar />
-        <BrowserRouter history>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Switch>
                 <Route exact path={process.env.PUBLIC_URL + '/'} component={Home} />
                 <Route exact path={process.env.PUBLIC_URL + routes.LOGIN} component={Login} />
