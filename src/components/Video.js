@@ -15,29 +15,6 @@ function handleError(error) {
 }
 let session = OT.initSession(API_KEY, SESSION_ID);
 
-let messageContainer = [];
-
-const oneToOneMessage = (e) => {
-    session.signal(
-        {
-            connection: {
-                connectionId: 'id'
-            },
-            type: "textMessage",
-            data: $('#message').val()
-        },
-        function (error) {
-            if (error) {
-                console.log("signal error ("
-                    + error.name
-                    + "): " + error.message);
-            } else {
-                console.log("signal sent.");
-            }
-        }
-    );
-}
-
 const publicMessage = () => {
     session.signal(
         {
@@ -112,14 +89,13 @@ class Video extends Component {
             this.setState({
                 subscriberList: subscriberContainer
             })
-            let connectionId = event.stream.connection.connectionId;
-
             session.subscribe(event.stream, 'subscriber', {
                 insertMode: 'append',
                 id: 'testst',
                 width: '100%',
                 height: '100%'
             }, handleError);
+
             $('#subscriber').children().attr('data-toggle', "tooltip");
             $('#subscriber').children().attr('title', "Click to send private message");
             $('#subscriber').children().attr('data-placement', "bottom");

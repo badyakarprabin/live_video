@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Live from './Live';
-import Upcoming from './Upcoming';
+// import Upcoming from './Upcoming';
 
 const LiveClass = () => {
     return (

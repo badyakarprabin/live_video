@@ -35,7 +35,6 @@ class Navbar extends Component {
                     isActiveTab: 0
                 });
                 break;
-
         }
     }
 
@@ -69,7 +68,6 @@ class Navbar extends Component {
                             </button>
                             <a className="navbar-brand logo-icon">
                                 <img src={icon} alt='Logo' width='30px' height='30px' />
-                                {/* <span className='logo-text'><b><i> E-Learning</i></b></span> */}
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">

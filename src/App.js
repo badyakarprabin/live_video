@@ -7,7 +7,6 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Video from './components/Video';
 import Profile from './components/Profile';
-import Opentok from './components/Opentok';
 import Contact from './components/Contact';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
