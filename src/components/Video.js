@@ -80,11 +80,28 @@ class Video extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showWhiteBoard: false,
+            showMessage: true,
             subscriberList: [],
             messageContainer: []
         };
     }
 
+    togglePrivateMessage() {
+
+    }
+
+    toggleMessage() {
+        this.setState({
+            showMessage: !this.state.showMessage
+        })
+    }
+
+    toggleBoard() {
+        this.setState({
+            showWhiteBoard: !this.state.showWhiteBoard
+        })
+    }
     componentDidMount() {
         initializeSession();
         // Subscribe to a newly created stream
@@ -106,6 +123,7 @@ class Video extends Component {
             $('#subscriber').children().attr('data-toggle', "tooltip");
             $('#subscriber').children().attr('title', "Click to send private message");
             $('#subscriber').children().attr('data-placement', "bottom");
+            $('#subscriber').children().last().prepend("<div class='btn' onClick={this.toggleMessage}>Message</div>")
         });
 
         let message = [];
@@ -127,7 +145,7 @@ class Video extends Component {
     }
 
     render() {
-        const { subscriberList } = this.state;
+        const { subscriberList, showMessage, messageContainer, showWhiteBoard } = this.state;
 
         return (
             <div className="container component-screen video-container">
@@ -135,7 +153,7 @@ class Video extends Component {
                     <div className='publisher-video' >
                         <div id='publisher' style={{ width: '100%', height: '100%' }} />
                     </div>
-                    <img src={videoSettings} alt='setting' />
+                    <img src={videoSettings} alt='setting' style={{ 'width': '90%' }} />
                 </div>
                 {subscriberList.length !== 0 &&
                     <div className="col-xs-12 col-lg-3">
@@ -150,27 +168,43 @@ class Video extends Component {
                         </div>
                     </div>
                 }
-                <div className="col-xs-12 col-lg-3 message-box">
-                    <div className="card text-center">
-                        <div className="col-xs-12 message-card-body">
-                            {this.state.messageContainer.map((item, index) =>
-                                <div>
-                                    <span className='message-sender'> Sender </span>
-                                    <div className='message-text' key={index}>
-                                        {item}
-                                    </div>
+                {showMessage &&
+                    <div className="col-xs-12 col-lg-3 message-box">
+                        <button className='btn btn-warning' onClick={() => this.toggleBoard()}>Jump : <b>{!showWhiteBoard ? 'Whiteboard' : 'Message'}</b></button>
+                        {showWhiteBoard &&
+                            <div className="card text-center">
+                                <div className="col-xs-12 message-card-body">
+                                    {this.state.messageContainer.map((item, index) =>
+                                        <div>
+                                            <span className='message-sender'> Sender </span>
+                                            <div className='message-text' key={index}>
+                                                {item}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                        <div className="col-xs-12 card-footer text-muted">
-                            <input type="text" class="col-xs-8 text-box" maxlength="160" id='message' placeholder="Type a message.." />
-                            <button class="col-xs-4 btn btn-outline-secondary box-shadow glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
-                            {/* <button class='btn btn-primary pull-right box-shadow'> Hide </button> */}
+                                <div className="col-xs-12 card-footer text-muted">
+                                    <input type="text" class="col-xs-8 text-box" maxlength="160" id='message' placeholder="Type a message.." />
+                                    <button class="col-xs-4 btn btn-outline-secondary box-shadow glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
+                                    <button class='btn btn-primary pull-right box-shadow'
+                                        onClick={() => this.toggleMessage()}>
+                                        <span>Hide</span>
+                                    </button>
 
-                        </div>
+                                </div>
+                            </div>
+                        }
+                    </div >
+                }
+                {!showMessage &&
+                    <div>
+                        <button class='btn btn-primary pull-right box-shadow'
+                            onClick={() => this.toggleMessage()}>
+                            <span>Menu </span>
+                            {messageContainer.length !== 0 && <span class="badge">{messageContainer.length}</span>}
+                        </button>
                     </div>
-
-                </div >
+                }
             </div>
         );
     }

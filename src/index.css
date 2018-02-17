@@ -69,6 +69,10 @@ h3 {
   padding: 0px 0px;
 }
 
+.profile-img{
+  border-radius: 200px;
+}
+
 .nav-header-text {
   margin: 10px 0px 10px 0px;
   color: #00aef3
@@ -114,6 +118,7 @@ h3 {
 .message-card-body{
   padding: 20px;
   height: 250px;
+  overflow-y: auto;
   word-wrap: break-word;
 }
 
@@ -150,7 +155,7 @@ h3 {
 .subscriber-container{
   width: 60%;  
   margin: 10px;
-  height: 100px;
+  height: 120px;
   text-align: center; 
   background: black; 
 }
@@ -167,10 +172,6 @@ h3 {
 .private-message-icon{
   position: absolute;
   z-index: 999;
-}
-
-.glyphicon.glyphicon-envelope {
-  font-size: 50px;
 }
 
 @media (min-width: 768px) {
@@ -199,7 +200,6 @@ h3 {
 
   .subscriber-container{
     width: 100%;    
-    height: 100px;
   }
   
 }

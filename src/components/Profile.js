@@ -11,7 +11,7 @@ const Contact = () => {
                     <h2>Profile Summary</h2>
                 </div>
                 <div className='col-xs-12 profile-img'>
-                    <img src={teacher} alt='teacher' width={200} height={200} style={{ 'border-radius': '200px' }} />
+                    <img src={teacher} className='profile-img' alt='teacher' width={200} height={200} />
                 </div>
                 <div className='col-xs-12 profile-details nav-header-text'>
                     <h4> Tom Handson </h4>

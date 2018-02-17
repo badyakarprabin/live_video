@@ -18,7 +18,7 @@ const Live = () => {
                             <img src={biology} alt='biology' width={155} height={100} />
                         </div>
                     </Link>
-                    <div class='text-center'>
+                    <div className='text-center'>
                         <div>Biology</div>
                         <div>
                             <span><a href='/profile'>Lomos :</a></span>
@@ -36,7 +36,7 @@ const Live = () => {
                             <img src={chemistry} alt='chemistry' width={155} height={100} />
                         </div>
                     </Link>
-                    <div class='text-center'>
+                    <div className='text-center'>
                         <div>Chemistry</div>
                         <div>
                             <span><a href='/profile'>Tom Hendson :</a></span>
