@@ -40,10 +40,7 @@ class Navbar extends Component {
     }
 
     onNavClick(param) {
-        const activeData = this.state.isActiveTab.map((item, index) => {
-            return param === index
-        })
-        this.setState({ isActiveTab: activeData });
+        this.setState({ isActiveTab: param });
     }
 
     render() {
