@@ -17,13 +17,13 @@ const App = () => (
         <Navbar />
         <BrowserRouter history>
             <Switch>
-                <Route exact path={routes.HOME} component={Home} />
-                <Route exact path={routes.LOGIN} component={Login} />
-                <Route exact path={routes.VIDEO} component={Video} />
-                <Route exact path={routes.COURSE} component={LiveClasses} />
-                <Route exact path={routes.PROFILE} component={Profile} />
+                <Route exact path={process.env.PUBLIC_URL + '/'} component={Home} />
+                <Route exact path={process.env.PUBLIC_URL + routes.LOGIN} component={Login} />
+                <Route exact path={process.env.PUBLIC_URL + routes.VIDEO} component={Video} />
+                <Route exact path={process.env.PUBLIC_URL + routes.COURSE} component={LiveClasses} />
+                <Route exact path={process.env.PUBLIC_URL + routes.PROFILE} component={Profile} />
                 {/* <Route exact path={routes.VIDEO} component={Opentok} /> */}
-                <Route exact path={routes.CONTACT} component={Contact} />
+                <Route exact path={process.env.PUBLIC_URL + routes.CONTACT} component={Contact} />
             </Switch>
         </BrowserRouter>
         <Footer />
