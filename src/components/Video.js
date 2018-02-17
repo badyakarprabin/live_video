@@ -6,8 +6,8 @@ import 'opentok-solutions-css';
 import AccCore from 'opentok-accelerator-core';
 
 const API_KEY = '46044372';
-const SESSION_ID = '2_MX40NjA0NDM3Mn5-MTUxNzAzNTM5MzAzOX5FWkxWNUNGSFNtVFNoZE5PVGdxaHh3ZU5-fg';
-const TOKEN = 'T1==cGFydG5lcl9pZD00NjA0NDM3MiZzaWc9OTUzNGY0NTNhZDI4MTBkNjMyODc0NDMwOTBiZTNkMjhmYTRmZjBjZTpzZXNzaW9uX2lkPTJfTVg0ME5qQTBORE0zTW41LU1UVXhOekF6TlRNNU16QXpPWDVGV2t4V05VTkdTRk50VkZOb1pFNVBWR2R4YUhoM1pVNS1mZyZjcmVhdGVfdGltZT0xNTE3MDM1NDQ1Jm5vbmNlPTAuMDMxMjY4OTYwOTY2MTM5MTgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUxOTYyNzQ0NCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
+const SESSION_ID = '2_MX40NjA0NDM3Mn5-MTUxODgwNDk4MTg4Nn5Ea0pjN0F2S0ZZVUpaUUFrRjZBclRVU3N-fg';
+const TOKEN = 'T1==cGFydG5lcl9pZD00NjA0NDM3MiZzaWc9NWE3MGNkYzYxYWMyMDdiZjdiYTllYmMyMjY5NWNhN2MzMmJkZmZjNTpzZXNzaW9uX2lkPTJfTVg0ME5qQTBORE0zTW41LU1UVXhPRGd3TkRrNE1UZzRObjVFYTBwak4wRjJTMFpaVlVwYVVVRnJSalpCY2xSVlUzTi1mZyZjcmVhdGVfdGltZT0xNTE4ODA1MDAxJm5vbmNlPTAuNjI0MTE4MjM2MDQzNTU1OCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTIxMzk3MDAwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
 
 function handleError(error) {
     if (error) {
@@ -58,17 +58,6 @@ const publicMessage = () => {
 }
 const initializeSession = () => {
 
-
-    // Subscribe to a newly created stream
-    session.on('streamCreated', function (event) {
-        session.subscribe(event.stream, 'subscriber', {
-            connection: event.stream.connection,
-            insertMode: 'append',
-            width: '100%',
-            height: '100%'
-        }, handleError);
-    });
-
     // Create a publisher
     var publisher = OT.initPublisher('publisher', {
         insertMode: 'append',
@@ -91,12 +80,29 @@ class Video extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            subscriberList: [],
             messageContainer: []
         };
     }
 
     componentDidMount() {
         initializeSession();
+        // Subscribe to a newly created stream
+        session.on("streamCreated", (event) => {
+            let subscriberContainer = [];
+
+            subscriberContainer.push(event.stream.connection);
+
+            session.subscribe(event.stream, 'subscriber', {
+                insertMode: 'append',
+                width: '100%',
+                height: '100%'
+            }, handleError);
+            this.setState({
+                subscriberList: subscriberContainer
+            })
+            console.log('test', this.state.subscriberList)
+        });
 
         let message = [];
 
@@ -117,6 +123,7 @@ class Video extends Component {
     }
 
     render() {
+        const { subscriberList } = this.state;
 
         return (
             <div className="container component-screen">
@@ -128,34 +135,38 @@ class Video extends Component {
                 <div className="col-xs-12 col-lg-5">
                     <div className='row'>
                         <div className='col-xs-5'>
-                            <div className='subscriber-video'>
-                                <div className='col-xs-10' id='subscriber' style={{ width: '70%', height: '100%' }} />
-                                <div className='col-xs-2 glyphicon glyphicon-envelope'
-                                    onClick={(e) => oneToOneMessage(e)}
-                                    style={{ margin: '40px 0px' }} />
+                            <div className='subscriber-container'>
+                                <div id='subscriber' style={{ width: '100%', height: '100%' }}>
+                                    {subscriberList.map((item, index) => (
+                                        <div className='col-xs-2 glyphicon glyphicon-envelope'
+                                            onClick={(e) => oneToOneMessage(e)}
+                                            style={{ margin: '40px 0px' }} />
+                                    ))
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-xs-12 col-lg-3 message-box">
+                {/* <div className="col-xs-12 col-lg-3 message-box">
                     <div class="card text-center">
                         <div class="card-header">
                             Public : Chat Room   [] X
-  </div>
                         <div class="message-card-body">
-                            <p class="card-text">Get in touch with your mentor in the public chat room</p>
-                            {this.state.messageContainer.map((item, index) =>
-                                <div key={index}>{item}</div>
-                            )}
+                                <p class="card-text">Get in touch with your mentor in the public chat room</p>
+                                {this.state.messageContainer.map((item, index) =>
+                                    <div key={index}>{item}</div>
+                                )}
+                            </div>
+                            <div class="card-footer text-muted">
+                                <input type="text" class="form-control" id='message' placeholder="Recipient's username" />
+                                <button class="btn btn-outline-secondary glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
+                            </div>
                         </div>
-                        <div class="card-footer text-muted">
-                            <input type="text" class="form-control" id='message' placeholder="Recipient's username" />
-                            <button class="btn btn-outline-secondary glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
-                        </div>
-                    </div>
 
-                </div>
-            </div >
+                    </div>
+                </div > */}
+            </div>
         );
     }
 }

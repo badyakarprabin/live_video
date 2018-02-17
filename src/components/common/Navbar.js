@@ -78,7 +78,7 @@ class Navbar extends Component {
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav">
                                 <li className={isHomeActive} onClick={() => this.onNavClick(0)}><a href='/'>Home</a></li>
-                                <li className={isProjectActive} onClick={() => this.onNavClick(1)}><a href={routes.VIDEO}>Projects</a></li>
+                                <li className={isProjectActive} onClick={() => this.onNavClick(1)}><a href={routes.VIDEO}>Live Sessions</a></li>
                                 <li className={isContactActive} onClick={() => this.onNavClick(2)}><a href={routes.CONTACT}>Contact</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
