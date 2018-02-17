@@ -14,14 +14,14 @@ import Footer from './components/common/Footer';
 import LiveClasses from './components/classess/LiveClasses';
 
 const App = () => (
-    <div className='container'>
+    <div>
         <Navbar />
         <BrowserRouter history>
             <Switch>
                 <Route exact path={routes.HOME} component={Home} />
                 <Route exact path={routes.LOGIN} component={Login} />
-                {/* <Route exact path={routes.VIDEO} component={Video} /> */}
-                <Route exact path={routes.VIDEO} component={LiveClasses} />
+                <Route exact path={routes.VIDEO} component={Video} />
+                <Route exact path={routes.COURSE} component={LiveClasses} />
                 <Route exact path={routes.PROFILE} component={Profile} />
                 {/* <Route exact path={routes.VIDEO} component={Opentok} /> */}
                 <Route exact path={routes.CONTACT} component={Contact} />

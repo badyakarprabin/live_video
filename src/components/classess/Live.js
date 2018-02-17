@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
+import * as routes from '../../common/routes'
 import views from '../../assets/views.png';
 import onair from '../../assets/onair.png';
 import biology from '../../assets/biology.png';
@@ -8,12 +10,14 @@ import chemistry from '../../assets/chemistry.jpg';
 const Live = () => {
     return (
         <div>
-            <div className='col-xs-2'>
+            <div className='col-xs-12 col-lg-2 col-md-6'>
                 <div className='live-container'>
-                    <div className='class-container'>
-                        <img src={onair} width={20} height={20} alt='live' style={{ 'margin': '3px', 'position': 'absolute' }} />
-                        <img src={biology} alt='biology' width={155} height={100} />
-                    </div>
+                    <Link to={routes.VIDEO}>
+                        <div className='class-container'>
+                            <img src={onair} width={20} height={20} alt='live' style={{ 'margin': '3px', 'position': 'absolute' }} />
+                            <img src={biology} alt='biology' width={155} height={100} />
+                        </div>
+                    </Link>
                     <div class='text-center'>
                         <div>Biology</div>
                         <div>
@@ -24,14 +28,16 @@ const Live = () => {
                     </div>
                 </div>
             </div>
-            <div className='col-xs-2'>
+            <div className='col-xs-12 col-lg-2 col-md-6'>
                 <div className='live-container'>
-                    <div className='class-container'>
-                        <img src={onair} width={20} height={20} alt='live' style={{ 'margin': '3px', 'position': 'absolute' }} />
-                        <img src={chemistry} alt='chemistry' width={155} height={100} />
-                    </div>
+                    <Link to={routes.VIDEO}>
+                        <div className='class-container'>
+                            <img src={onair} width={20} height={20} alt='live' style={{ 'margin': '3px', 'position': 'absolute' }} />
+                            <img src={chemistry} alt='chemistry' width={155} height={100} />
+                        </div>
+                    </Link>
                     <div class='text-center'>
-                        <div>Biology</div>
+                        <div>Chemistry</div>
                         <div>
                             <span><a href='/profile'>Tom Hendson :</a></span>
                             <span> 31 <img src={views} width={20} height={20} alt='views' /></span><br />

@@ -47,6 +47,14 @@ h3 {
   bottom: 0;
 }
 
+.box-shadow{
+  box-shadow: 2px 2px #555;
+}
+
+.border-radius{
+  border-radius: 10px;
+}
+
 .contact {
   padding: 20px 0px;
   text-align: center;
@@ -94,25 +102,44 @@ h3 {
 }
 
 .message-box{
-  bottom: 0;
-  position:fixed;
+  float:right;
+  margin:10px;
   height: 350px;
-  margin: 0px -15px;  
   text-align: center;
-  background: white;
+  background: #999;
+  box-shadow: 2px 2px 1px #555;
   border: #435555 solid 1px;
 }
 
 .message-card-body{
-  height: 150px;
-  overflow-y: scroll;
+  padding: 20px;
+  height: 250px;
+  word-wrap: break-word;
 }
 
-.message-box-view{
+.message-sender{
+  padding: 10px;
+  background: cadetblue;
+  border-radius: 20px;
+}
+.message-card-header{
+  padding: 10px;
+}
 
+.text-box{
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px #555;
+}
+.message-text{
+  margin:20px;
 }
 
 /* video */
+.video-container {
+  background: black;
+}
+
 .publisher-video{
   margin: 10px;
   height: 300px;
@@ -127,16 +154,31 @@ h3 {
   text-align: center; 
   background: black; 
 }
+#publisher{
+  border: 1px solid;
+  box-shadow: 2px 2px #555;
+}
 
+#subscriber .OT_root{
+  border: 1px solid #555;  
+  box-shadow: 2px 2px #555;
+}
+
+.private-message-icon{
+  position: absolute;
+  z-index: 999;
+}
+
+.glyphicon.glyphicon-envelope {
+  font-size: 50px;
+}
 
 @media (min-width: 768px) {
   body {
     font-size: 16px;
   }
   .message-box{
-    right: 0px;   
-    margin: 10px;     
-    height: 350px;
+    height: 400px;
   }
   .login-box {
     width: 40%;
@@ -152,7 +194,7 @@ h3 {
   }
   /* video */
   .publisher-video{
-    height: 500px;
+    height: 400px;
   }
 
   .subscriber-container{
