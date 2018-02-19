@@ -1,21 +1,42 @@
 .duration {
-    padding: 3px;
+    padding: 4px 6px;
     font-size: 11px;
     background: grey;
+    color: white;
+    box-shadow: 1px 1px 1px 1px #555;
     border-radius: 3px;
 }
 
 .live-container{
-    margin: 10px 0px 10px 0px;
+    padding: 10px 0px;
+}
+
+.course-thumbnail{
+    width: 152px;
+    height: 100px;
 }
 
 .class-container{
     width: 60%;  
     height: 100px;
     text-align: center; 
-    background: black; 
-    margin: 10px 0px 10px 0px;    
+    box-shadow: 1px 1px 1px 1px #555
   }
+
+.course-thumbnail-text{
+    padding: 10px 0px;
+}
+
+.course-live{
+    width: 13px;
+    height: 13px;
+    border-radius: 13px;
+    background:#d80a24;
+    position: absolute;
+    top: 15px;
+    left: 23px;
+    box-shadow: 0px 0px 11px 2px red;
+}
 
 @media (min-width: 768px) {
     .class-container{

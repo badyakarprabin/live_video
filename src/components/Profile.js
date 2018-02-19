@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import * as routes from '../common/routes';
 import teacher from '../assets/teacher.png';
 
 const Contact = () => {
@@ -19,7 +20,7 @@ const Contact = () => {
                     <div> tom.handson183@gmail.com </div>
                     <div> Status : <span className='glyphicon glyphicon-ok'>Active</span> </div>
                 </div>
-                <Link to='/courses'><div className='btn btn-primary'>Back</div></Link>
+                <Link to={routes.COURSE}><div className='btn btn-primary'>Back</div></Link>
             </div>
         </div >
     );

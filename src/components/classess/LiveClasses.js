@@ -6,11 +6,14 @@ import Live from './Live';
 const LiveClass = () => {
     return (
         <div className='container component-screen loading-animation'>
-            <div className='live-container'>
+            <div className='contact'>
                 <div className='nav-header-text text-center'>
                     <h2>Live Class</h2>
                 </div>
                 <div className='col-xs-12'>
+                    <Live />
+                    <Live />
+                    <Live />
                     <Live />
                     <Live />
                     <Live />
