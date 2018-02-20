@@ -5,6 +5,10 @@ body {
   font-size: 10px;
   font-family: sans-serif;  
 }
+.btn{
+  margin: 10px 0px;
+}
+
 h2 {
   margin: 0px;
 }
@@ -107,7 +111,6 @@ h3 {
 
 .message-box{
   float:right;
-  margin:10px;
   height: 350px;
   text-align: center;
   background: #999;
@@ -117,9 +120,14 @@ h3 {
 
 .message-card-body{
   padding: 20px;
-  height: 250px;
+  height: 320px;
   overflow-y: auto;
   word-wrap: break-word;
+}
+
+.message-font{
+  font-size: 12px;
+  min-height: 40px;
 }
 
 .message-sender{
@@ -145,23 +153,29 @@ h3 {
   background: black;
 }
 
+.publiser-video-xs {
+  height: 300px;  
+}
+
+.publiser-video-lg {
+  height: 300px;  
+}
+
 .publisher-video{
   margin: 10px;
-  height: 300px;
   text-align: center;  
   background: black;
 }
 
 .subscriber-container{
   width: 60%;  
-  margin: 10px;
   height: 120px;
   text-align: center; 
   background: black; 
 }
+
 #publisher{
-  border: 1px solid;
-  box-shadow: 2px 2px #555;
+  box-shadow: 2px 2px black;
 }
 
 #subscriber .OT_root{
@@ -174,12 +188,19 @@ h3 {
   z-index: 999;
 }
 
+.publisher-settings{
+  position: relative;
+  width: 90%;
+  top: -63px;
+  opacity: 0.4;
+}
+
 @media (min-width: 768px) {
   body {
     font-size: 16px;
   }
   .message-box{
-    height: 400px;
+    height: 500px;
   }
   .login-box {
     width: 40%;
@@ -194,10 +215,12 @@ h3 {
     height: 400px;
   }
   /* video */
-  .publisher-video{
+  .publiser-video-xs {
     height: 400px;
   }
-
+  .publiser-video-lg {
+    height: 600px;
+  }
   .subscriber-container{
     width: 100%;    
   }

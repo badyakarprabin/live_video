@@ -1,6 +1,7 @@
 import $ from "jquery";
 import OT from '@opentok/client';
 import React, { Component } from 'react';
+import * as classNames from 'classnames';
 
 import videoSettings from '../assets/video.png'
 
@@ -33,10 +34,11 @@ const publicMessage = () => {
         }
     );
 }
-const initializeSession = () => {
+const initializeSession = (fullMode) => {
 
     // Create a publisher
     var publisher = OT.initPublisher('publisher', {
+        fitMode: "cover",
         insertMode: 'append',
         width: '100%',
         height: '100%'
@@ -57,6 +59,7 @@ class Video extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            fullMode: false,
             showWhiteBoard: false,
             showMessage: true,
             subscriberList: [],
@@ -66,6 +69,12 @@ class Video extends Component {
 
     togglePrivateMessage() {
 
+    }
+
+    toggleScreen() {
+        this.setState({
+            fullMode: !this.state.fullMode
+        })
     }
 
     toggleMessage() {
@@ -80,7 +89,7 @@ class Video extends Component {
         })
     }
     componentDidMount() {
-        initializeSession();
+        initializeSession(this.state.fullMode);
         // Subscribe to a newly created stream
         session.on("streamCreated", (event) => {
             let subscriberContainer = [];
@@ -96,10 +105,10 @@ class Video extends Component {
                 height: '100%'
             }, handleError);
 
-            $('#subscriber').children().attr('data-toggle', "tooltip");
-            $('#subscriber').children().attr('title', "Click to send private message");
-            $('#subscriber').children().attr('data-placement', "bottom");
-            $('#subscriber').children().last().prepend("<div class='btn' onClick={this.toggleMessage}>Message</div>")
+            // $('#subscriber').children().attr('data-toggle', "tooltip");
+            // $('#subscriber').children().attr('title', "Click to send private message");
+            // $('#subscriber').children().attr('data-placement', "bottom");
+            // $('#subscriber').children().last().prepend("<div class='btn' onClick={this.toggleMessage}>Message</div>")
         });
 
         let message = [];
@@ -121,20 +130,35 @@ class Video extends Component {
     }
 
     render() {
-        const { subscriberList, showMessage, messageContainer, showWhiteBoard } = this.state;
+        let fullModeClass = classNames({
+            'clearfix': true,
+            'text-center': true,
+            'col-xs-12 col-lg-5': !this.state.fullMode,
+            'col-xs-12 col-lg-10-offset-1': this.state.fullMode
+        });
+
+        let fullModeContainer = classNames({
+            'publiser-video': true,
+            'publiser-video-lg': this.state.fullMode,
+            'publiser-video-xs': !this.state.fullMode
+        })
+
+
+        const { subscriberList, showMessage, messageContainer, showWhiteBoard, fullMode } = this.state;
 
         return (
             <div className="container component-screen video-container">
-                <div className="col-xs-12 col-lg-5 text-center">
-                    <div className='publisher-video' >
+                <div className={fullModeClass}>
+                    <div className={fullModeContainer}>
                         <div id='publisher' style={{ width: '100%', height: '100%' }} />
                     </div>
-                    <img src={videoSettings} alt='setting' style={{ 'width': '90%' }} />
+                    {!fullMode && <img className='publisher-settings' src={videoSettings} alt='setting' style={{ 'width': '90%' }} />}
+                    <div className='btn btn-primary' onClick={() => this.toggleScreen()} style={{ 'position': 'relative', 'top': '-45px' }}>Toggle Size</div>
                 </div>
-                {subscriberList.length !== 0 &&
-                    <div className="col-xs-12 col-lg-3">
+                {!fullMode && subscriberList.length !== 0 &&
+                    <div className="col-xs-12 col-lg-2">
                         <div className='row'>
-                            <div className='col-xs-5'>
+                            <div className='col-xs-12'>
                                 <div className='subscriber-container'>
                                     <div id='subscriber' style={{ width: '100%', height: '100%' }}>
 
@@ -144,25 +168,25 @@ class Video extends Component {
                         </div>
                     </div>
                 }
-                {showMessage &&
-                    <div className="col-xs-12 col-lg-3 message-box">
+                {!fullMode && showMessage &&
+                    <div className="col-xs-12 col-lg-4 message-box">
                         <button className='btn btn-warning' onClick={() => this.toggleBoard()}>Jump : <b>{!showWhiteBoard ? 'Whiteboard' : 'Message'}</b></button>
                         {showWhiteBoard &&
                             <div className="card text-center">
                                 <div className="col-xs-12 message-card-body">
                                     {this.state.messageContainer.map((item, index) =>
-                                        <div>
-                                            <span className='message-sender'> Sender </span>
-                                            <div className='message-text' key={index}>
+                                        <div className='message-font' key={index} >
+                                            <span className='message-sender'> <b>Sender :</b></span>
+                                            <span className='message-text' key={index}>
                                                 {item}
-                                            </div>
+                                            </span>
                                         </div>
                                     )}
                                 </div>
                                 <div className="col-xs-12 card-footer text-muted">
-                                    <input type="text" class="col-xs-8 text-box" maxlength="160" id='message' placeholder="Type a message.." />
-                                    <button class="col-xs-4 btn btn-outline-secondary box-shadow glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
-                                    <button class='btn btn-primary pull-right box-shadow'
+                                    <input type="text" className="col-xs-8 text-box" maxLength="160" id='message' placeholder="Type a message.." />
+                                    <button className="col-xs-4 btn btn-outline-secondary box-shadow glyphicon glyphicon-share-alt" type="button" onClick={() => publicMessage()} />
+                                    <button className='btn btn-primary pull-right box-shadow'
                                         onClick={() => this.toggleMessage()}>
                                         <span>Hide</span>
                                     </button>
@@ -172,7 +196,7 @@ class Video extends Component {
                         }
                     </div >
                 }
-                {!showMessage &&
+                {!fullMode && !showMessage &&
                     <div>
                         <button class='btn btn-primary pull-right box-shadow'
                             onClick={() => this.toggleMessage()}>

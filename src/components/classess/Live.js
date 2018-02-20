@@ -9,7 +9,7 @@ import biology from '../../assets/biology.png';
 
 const Live = () => {
     return (
-        <div className='col-xs-12 col-lg-2 col-md-6'>
+        <div className='col-lg-2 col-xs-6'>
             <div className='live-container'>
                 <Link to={routes.VIDEO}>
                     <div className='class-container'>

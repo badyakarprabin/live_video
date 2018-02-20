@@ -26,7 +26,7 @@ const App = () => (
                 <Route exact path={routes.CONTACT} component={Contact} />
             </Switch>
         </BrowserRouter>
-        <Footer />
+        {/* <Footer /> */}
     </div>
 );
 
